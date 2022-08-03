@@ -12,6 +12,7 @@ import dev.deltric.sprout.util.Text;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
@@ -25,11 +26,23 @@ public abstract class SproutConfiguredInventory extends SproutInventory {
         this.layout = layout;
     }
 
-    public abstract Map<String, Function<ItemStack, SproutButton>> setupButtons();
+    public void setupButtons(Map<String, Function<ItemStack, SproutButton>> buttonMap) {
+        buttonMap.put("nextPage", (itemStack -> SproutButton.of(itemStack, (event -> {
+            Player player = (Player) event.getWhoClicked();
+            this.nextPage(player);
+        }))));
+
+        buttonMap.put("previousPage", (itemStack -> SproutButton.of(itemStack, (event -> {
+            Player player = (Player) event.getWhoClicked();
+            this.previousPage(player);
+        }))));
+    }
 
     @Override
     public void setupInventory(Player player) {
-        final Map<String, Function<ItemStack, SproutButton>> buttons = this.setupButtons();
+        final Map<String, Function<ItemStack, SproutButton>> buttons = new HashMap<>();
+        this.setupButtons(buttons);
+
         final SproutPage page = this.layout.getPage(pageNum);
 
         // Reset all past buttons and items
