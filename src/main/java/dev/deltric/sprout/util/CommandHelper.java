@@ -10,17 +10,30 @@ import java.util.List;
 
 public class CommandHelper {
 
-    public void run(Player player, List<String> commands) {
+    /**
+     * Runs a list of commands.
+     * Replaces all %player% placeholders with the players name.
+     *
+     * @param player - player for player placeholder
+     * @param commands - commands to run
+     */
+    public static void run(Player player, List<String> commands) {
         Server server = Bukkit.getServer();
         CommandSender console = Bukkit.getConsoleSender();
 
         for (String command : commands) {
-            server.dispatchCommand(console, command);
+            server.dispatchCommand(console, command.replaceAll("%player%", player.getName()));
         }
     }
 
-    public void run(ServerPlayerEntity player, List<String> commands) {
-        this.run(BukkitPlayer.from(player), commands);
+    /**
+     * Runs a list of commands.
+     * Replaces all %player% placeholders with the players name.
+     *
+     * @param player - player for player placeholder
+     * @param commands - commands to run
+     */
+    public static void run(ServerPlayerEntity player, List<String> commands) {
+        CommandHelper.run(BukkitPlayer.from(player), commands);
     }
-
 }
