@@ -1,0 +1,58 @@
+{
+    "inventoryTitle": "Example Menu",
+    "inventoryRow": 3,
+    "pages": [
+        {
+            "decorations": [
+                {
+                    "slots": [0,1,2,3,4,5,6,7,8,9,17,18,19,20,21,22,23,24,25,26],
+                    "iconTag": "glassBorder"
+                }
+            ],
+            "buttons": {
+                "11": {
+                    "action": "decreaseCount",
+                    "iconTag": "decrease"
+                },
+                "13": {
+                    "action": "claimItem",
+                    "iconTag": "freeItem"
+                },
+                "15": {
+                    "action": "increaseCount",
+                    "iconTag": "increase"
+                }
+            }
+        }
+    ],
+    "iconTags": {
+        "decrease": {
+            "type": "pixelmon:red_shard",
+            "name": "&c-1 Item Count",
+            "lore": [
+                "&7Left-click to decrease",
+                "&7amount."
+            ]
+        },
+        "freeItem": {
+            "type": "pixelmon:poke_ball",
+            "name": "Free Pokeballs",
+            "lore": [
+                "&7Left-click to claim free",
+                "&cPoke &fBalls&7!"
+            ]
+        },
+        "increase": {
+            "type": "pixelmon:green_shard",
+            "name": "&a+1 Item Count",
+            "lore": [
+                "&7Left-click to increase",
+                "&7amount."
+            ]
+        },
+        "glassBorder": {
+            "type": "minecraft:gray_stained_glass_pane",
+            "name": ""
+        }
+    }
+}
